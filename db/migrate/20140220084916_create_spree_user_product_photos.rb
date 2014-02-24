@@ -3,7 +3,7 @@ class CreateSpreeUserProductPhotos < ActiveRecord::Migration
     create_table :spree_user_product_photos do |t|
       t.integer :user_id
       t.integer :product_id
-      t.boolean :accepted, default: false
+      t.boolean :accepted
 
       t.timestamps
     end
