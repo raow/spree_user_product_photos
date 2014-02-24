@@ -20,4 +20,16 @@ class Spree::UserProductPhoto < ActiveRecord::Base
   def reject!
     self.update_attributes!(accepted: false)
   end
+
+  def pending_review?
+    accepted.nil?
+  end
+
+  def to_accept?
+    !accepted? || accepted == nil
+  end
+
+  def to_reject?
+    accepted? || accepted == nil
+  end
 end
