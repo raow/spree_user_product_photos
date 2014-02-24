@@ -5,7 +5,7 @@ class Spree::UserProductPhotosController < Spree::StoreController
     photo = @product.user_product_photos.new(allowed_params)
     photo.user_id = current_spree_user.id
     if photo.save
-      flash[:notice] = t('user_product_photo.sent')
+      flash[:notice] = t('spree_user_product_photo.sent')
       redirect_to @product
     else
       flash[:error] = photo.errors.full_messages.to_sentence
@@ -14,6 +14,7 @@ class Spree::UserProductPhotosController < Spree::StoreController
   end
 
   private
+
   def load_data
     @product = Spree::Product.find(allowed_params[:product_id])
   end

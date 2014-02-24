@@ -2,4 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  spree_user_product_photos:
+    upload_photo: 'Upload photo'
+    sent: 'Your photo is now waiting for an admin review'
+    pending_user_photos: 'Pending photos'
+    products_with_pending_user_photos: 'Pending photos'
+    no_pending_photos: 'No pending photos'
+    label: 'Pending photos review'
+    accept_photo: 'Accept'
+    reject_photo: 'Reject'
