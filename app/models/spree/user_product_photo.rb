@@ -10,6 +10,8 @@ class Spree::UserProductPhoto < ActiveRecord::Base
                       convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
 
   scope :accepted, ->{ where(accepted: true) }
+  scope :rejected, ->{ where(accepted: false) }
+  scope :pending_review, ->{ where(accepted: nil) }
 
   def accept!
     self.accepted = true
