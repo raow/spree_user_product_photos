@@ -1,0 +1,35 @@
+<% content_for :page_title do %>
+  <%= t('spree_user_product_photos.products_with_pending_user_photos') %>
+<% end %>
+<%= render partial: 'spree/admin/shared/product_sub_menu' %>
+
+<% if @collection.any? %>
+  <table class="index" id="listing_products">
+    <colgroup>
+      <col style="width: 80%;"/>
+      <col style="width: 20%;"/>
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_products_pending_user_photo_headers">
+        <th><%= Spree.t(:products) %></th>
+        <th data-hook="admin_products_pending_user_photos_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @collection.each do |product| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td>
+            <%= link_to product.name, edit_admin_product_path(product) %>
+          </td>
+          <td class="actions" data-hook="admin_products_pending_user_photos_index_row_actions">
+            <%= link_to Spree.t(:edit), edit_admin_product_path(product) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= t('spree_user_product_photos.no_pending_photos') %>
+  </div>
+<% end %>
