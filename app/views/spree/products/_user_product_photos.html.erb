@@ -1,12 +1,15 @@
 <% if @product.user_product_photos.accepted.present? %>
   <div class="row">
-    <h6 class="product-section-title"><%= t(:questions_and_answers) %></h6>
-    <% @product.questions.answered.visible.each_with_index do |question, index| %>
-      <div class="qna">
-        <div class="question"><%= "#{index+1}. #{question.content}" %></div>
-        <div class="answer"><%= question.answer.content %></div>
-      </div>
-    <% end %>
+    <h6 class="product-section-title"><%= t('spree_user_product_photos.added_user_product_photo') %></h6>
+    <ul>
+      <% @product.user_product_photos.accepted.each do |photo| %>
+        <li class="tmb-all tmb-1">
+          <a href="<%= photo.file.url %>">
+          <%= image_tag photo.file.url(:mini) %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
   </div>
 <% end %>
 <% if current_spree_user.present? %>
