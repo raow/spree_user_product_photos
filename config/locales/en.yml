@@ -5,9 +5,13 @@ en:
   spree_user_product_photos:
     upload_photo: 'Upload photo'
     sent: 'Your photo is now waiting for an admin review'
+    added_user_product_photo: 'Photos added by users:'
+
     pending_user_photos: 'Pending photos'
     products_with_pending_user_photos: 'Pending photos'
     no_pending_photos: 'No pending photos'
     label: 'Pending photos review'
     accept_photo: 'Accept'
     reject_photo: 'Reject'
+    photo_accepted: 'Photo was accepted'
+    photo_rejected: 'Photo was rejected'
