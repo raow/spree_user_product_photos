@@ -1,0 +1,55 @@
+<%= content_for :page_actions do %>
+<% end %>
+
+<%= render partial: 'spree/admin/shared/product_sub_menu' %>
+<%= render partial: 'spree/admin/shared/product_tabs', locals: { current: t('spree_user_product_photos.user_product_photos') } %>
+
+<%= paginate @collection %>
+
+<% if @collection.any? %>
+  <table class="index" id="listing_user_product_photos">
+    <colgroup>
+      <col style="width: 80%;"/>
+      <col style="width: 20%;"/>
+    </colgroup>
+    <thead>
+      <tr data-hook="admin_product_user_product_photos_index_headers">
+        <th><%= t('user_product_photos') %></th>
+        <th data-hook="admin_product_user_product_photos_index_header_actions" class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @collection.each do |photo| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td>
+            <%= image_tag photo.file.url %>
+          </td>
+          <td>
+            <%- if photo.pending_review? %>
+              <%= Spree.t('spree_user_product_photos.pending_review') %>
+            <%- elsif photo.accepted? %>
+              <%= Spree.t('spree_user_product_photos.accepted') %>
+            <%- else %>
+              <%= Spree.t('spree_user_product_photos.rejected') %>
+            <%- end %>
+          </td>
+          <td>
+            <%- if photo.to_accept? %>
+              <%= button_to t('spree_user_product_photos.accept_photo'), accept_admin_product_user_product_photo_path(photo.product, photo) %>
+            <%- end %>
+            <%- if photo.to_reject? %>
+              <%= button_to t('spree_user_product_photos.reject_photo'), reject_admin_product_user_product_photo_path(photo.product, photo) %>
+            <%- end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alpha twelve columns no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: Spree::Question.model_name.human) %>,
+    <%= link_to Spree.t(:add_one), new_admin_product_question_url %>!
+  </div>
+<% end %>
+
+<%= paginate @collection %>
