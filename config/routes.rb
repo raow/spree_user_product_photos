@@ -3,7 +3,7 @@ Spree::Core::Engine.routes.draw do
 
   namespace :admin do
     resources :products do
-      resources :user_product_photos, only: [] do
+      resources :user_product_photos, only: [:index] do
         member do
           post :accept
           post :reject
