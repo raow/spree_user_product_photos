@@ -8,13 +8,13 @@ class Spree::Admin::UserProductPhotosController < Spree::Admin::ResourceControll
 
   def accept
     if Spree::UserProductPhoto.find(params[:id]).accept!
-      redirect_to request.referer, notice: I18n.t('spree_user_product_photos.photo_accepted')
+      redirect_to request.referer, notice: I18n.t('spree_user_product_photos.admin.photo_accepted')
     end
   end
 
   def reject
     if Spree::UserProductPhoto.find(params[:id]).reject!
-      redirect_to request.referer, notice: I18n.t('spree_user_product_photos.photo_rejected')
+      redirect_to request.referer, notice: I18n.t('spree_user_product_photos.admin.photo_rejected')
     end
   end
 end
