@@ -19,10 +19,10 @@
       <% @collection.each do |product| %>
         <tr class="<%= cycle('odd', 'even') %>">
           <td>
-            <%= link_to product.name, edit_admin_product_path(product) %>
+            <%= link_to product.name, admin_product_user_product_photos_path(product) %>
           </td>
           <td class="actions" data-hook="admin_products_pending_user_photos_index_row_actions">
-            <%= link_to Spree.t(:edit), edit_admin_product_path(product) %>
+            <%= link_to Spree.t(:edit), admin_product_user_product_photos_path(product) %>
           </td>
         </tr>
       <% end %>
