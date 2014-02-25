@@ -12,6 +12,7 @@ class Spree::UserProductPhoto < ActiveRecord::Base
   scope :accepted, ->{ where(accepted: true) }
   scope :rejected, ->{ where(accepted: false) }
   scope :pending_review, ->{ where(accepted: nil) }
+  scope :user_pending_review, -> user { where(accepted: nil, user: user) }
 
   def accept!
     self.update_attributes!(accepted: true)
