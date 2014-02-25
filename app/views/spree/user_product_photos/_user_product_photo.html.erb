@@ -1,4 +1,4 @@
-<li class='tmb-all tmb-user-<%= user_product_photo.id %>'>
+<li class='tmb-all tmb-user-<%= user_product_photo.id %> <%= 'tmb-user-accepted' if user_product_photo.accepted? %>'>
   <a href="<%= user_product_photo.file.url %>">
   <%= image_tag user_product_photo.file.url(:mini) %>
   </a>

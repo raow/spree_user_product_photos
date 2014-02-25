@@ -1,5 +1,5 @@
 <% if @product.user_product_photos.accepted.present? %>
-  <div class="row">
+  <div class="row" data-hook='user_product_photos'>
     <h6 class="product-section-title"><%= t('spree_user_product_photos.added_user_product_photo') %></h6>
     <ul>
       <%= render @product.user_product_photos.accepted %>
@@ -8,7 +8,7 @@
 <% end %>
 
 <% if @product.user_product_photos.user_pending_review(current_spree_user).present? %>
-  <div class="row">
+  <div class="row" data-hook='pending_user_product_photos'>
     <h6 class="product-section-title"><%= t('spree_user_product_photos.your_pending_photos') %></h6>
     <ul>
       <%= render @product.user_product_photos.user_pending_review(current_spree_user) %>
