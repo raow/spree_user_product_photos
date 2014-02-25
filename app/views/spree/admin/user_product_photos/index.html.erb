@@ -9,37 +9,45 @@
 <% if @collection.any? %>
   <table class="index" id="listing_user_product_photos">
     <colgroup>
-      <col style="width: 80%;"/>
-      <col style="width: 20%;"/>
+      <col style="width: 10%;"/>
+      <col style="width: 25%;"/>
+      <col style="width: 30%;"/>
     </colgroup>
     <thead>
       <tr data-hook="admin_product_user_product_photos_index_headers">
-        <th><%= t('user_product_photos') %></th>
+        <th><%= t('spree_user_product_photos.admin.thumbnails') %></th>
+        <th><%= t('spree_user_product_photos.admin.status') %></th>
         <th data-hook="admin_product_user_product_photos_index_header_actions" class="actions"></th>
       </tr>
     </thead>
     <tbody>
       <% @collection.each do |photo| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td>
-            <%= image_tag photo.file.url %>
+          <td class="align-center">
+            <%= image_tag photo.file.url(:small) %>
           </td>
           <td>
             <%- if photo.pending_review? %>
-              <%= Spree.t('spree_user_product_photos.pending_review') %>
+              <%= t('spree_user_product_photos.admin.pending_review') %>
             <%- elsif photo.accepted? %>
-              <%= Spree.t('spree_user_product_photos.accepted') %>
+              <%= t('spree_user_product_photos.admin.accepted') %>
             <%- else %>
-              <%= Spree.t('spree_user_product_photos.rejected') %>
+              <%= t('spree_user_product_photos.admin.rejected') %>
             <%- end %>
           </td>
-          <td>
-            <%- if photo.to_accept? %>
-              <%= button_to t('spree_user_product_photos.accept_photo'), accept_admin_product_user_product_photo_path(photo.product, photo) %>
-            <%- end %>
-            <%- if photo.to_reject? %>
-              <%= button_to t('spree_user_product_photos.reject_photo'), reject_admin_product_user_product_photo_path(photo.product, photo) %>
-            <%- end %>
+          <td class="actions">
+            <ul class="inline-menu">
+              <%- if photo.to_accept? %>
+                <li>
+                <%= button_to t('spree_user_product_photos.admin.accept_photo'), accept_admin_product_user_product_photo_path(photo.product, photo) %>
+                </li>
+              <%- end %>
+              <%- if photo.to_reject? %>
+                <li>
+                <%= button_to t('spree_user_product_photos.admin.reject_photo'), reject_admin_product_user_product_photo_path(photo.product, photo) %>
+                <li>
+              <%- end %>
+            </ul>
           </td>
         </tr>
       <% end %>
