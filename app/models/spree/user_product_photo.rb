@@ -9,6 +9,9 @@ class Spree::UserProductPhoto < ActiveRecord::Base
                       path: ':rails_root/public/spree/products/:product_id/user_photos/:style/:basename.:extension',
                       convert_options: { all: '-strip -auto-orient -colorspace sRGB' }
 
+  validates_attachment :file,
+                        content_type: { :content_type => ["image/jpeg", "image/gif", "image/png"] }
+
   scope :accepted, ->{ where(accepted: true) }
   scope :rejected, ->{ where(accepted: false) }
   scope :pending_review, ->{ where(accepted: nil) }
