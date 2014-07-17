@@ -2,7 +2,7 @@ module SpreeUserProductPhotos
   module Generators
     class InstallGenerator < Rails::Generators::Base
 
-      class_option :auto_run_migrations, :type => :boolean, :default => false
+      class_option :auto_run_migrations, type: :boolean, default: false
 
       def add_javascripts
         append_file 'app/assets/javascripts/store/all.js', "//= require store/spree_user_product_photos\n"
@@ -10,8 +10,13 @@ module SpreeUserProductPhotos
       end
 
       def add_stylesheets
-        inject_into_file 'app/assets/stylesheets/store/all.css', " *= require store/spree_user_product_photos\n", :before => /\*\//, :verbose => true
-        inject_into_file 'app/assets/stylesheets/admin/all.css', " *= require admin/spree_user_product_photos\n", :before => /\*\//, :verbose => true
+        if File.exist?('app/assets/stylesheets/store/all.css')
+          file_path = 'app/assets/stylesheets/store/all.css'
+        else
+          file_path = 'app/assets/stylesheets/store/all.css.scss'
+        end
+        inject_into_file file_path, " *= require store/spree_user_product_photos\n", before: /\*\//, verbose: true
+        inject_into_file file_path, " *= require admin/spree_user_product_photos\n", before: /\*\//, verbose: true
       end
 
       def add_migrations
