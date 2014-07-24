@@ -1,7 +1,7 @@
 <% if current_spree_user.present? %>
   <%= form_for @product.user_product_photos.build, method: :post, html: { multipart: true } do |f| %>
     <%= f.hidden_field :product_id, value: @product.id %>
-    <%= f.file_field :file %>
+    <%= f.file_field :file, accept: 'image/png, image/gif, image/jpeg' %>
     <br>
     <%= f.submit t('spree_user_product_photos.upload_photo') %>
   <% end %>
